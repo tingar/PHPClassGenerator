@@ -41,7 +41,7 @@ $cl->addField($f);
 
 $f = new ClassBuilderField('$_superclass');
 $f->setAccess(ClassBuilder::ACCESS_PROTECTED);
-$f->setDefault('false');
+$f->setDefault('null');
 $cl->addField($f);
 
 $f = new ClassBuilderField('$_interfaces');
@@ -107,7 +107,7 @@ foreach($this->_methods as $method) {
 	}
 }
 
-return $classSpec . "\n}\n";';
+return $classSpec . "}\n";';
 
 $m = new ClassBuilderMethod('__toString');
 $m->setType('string');
