@@ -48,7 +48,7 @@ class ClassBuilderField extends ClassBuilderNode {
 		}
 		$s .= $this->name;
 		if ($this->default) {
-			$s .= "= {$this->default}";
+			$s .= " = {$this->default}";
 		}
 		return $s.";\n";
 	}
