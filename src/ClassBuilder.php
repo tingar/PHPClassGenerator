@@ -14,23 +14,23 @@ class ClassBuilder extends ClassBuilderNode {
 	protected $_superclass = null;
 	protected $_interfaces = array();
 
-	public function addConstant($name, $value) {
+	function addConstant($name, $value) {
 		$this->_constants[$name] = $value;
 	}
 
-	public function addField(ClassBuilderField $field) {
+	function addField(ClassBuilderField $field) {
 		$this->_fields[$field->getName()] = $field;
 	}
 
-	public function addMethod(ClassBuilderMethod $method) {
+	function addMethod(ClassBuilderMethod $method) {
 		$this->_methods[$method->getName()] = $method;
 	}
 
-	public function setSuperClass($superclass) {
+	function setSuperClass($superclass) {
 		$this->_superclass = $superclass;
 	}
 
-	public function __toString() {
+	function __toString() {
 		$classSpec = $this->getComment();
 
 		if ($this->_abstract) {
