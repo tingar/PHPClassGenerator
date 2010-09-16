@@ -1,35 +1,87 @@
 <?
 
+/**
+ */
 class ClassBuilder extends ClassBuilderNode {
-	const ACCESS_PUBLIC    = 'public';
-	const ACCESS_PROTECTED = 'protected';
-	const ACCESS_PRIVATE   = 'private';
 
+	const ACCESS_PUBLIC = 'public';
+	const ACCESS_PROTECTED = 'protected';
+	const ACCESS_PRIVATE = 'private';
+
+	/**
+	 * @var
+	 * @access protected
+	 */
 	protected $_constants = array();
-	protected $_fields  = array();
+
+	/**
+	 * @var
+	 * @access protected
+	 */
+	protected $_fields = array();
+
+	/**
+	 * @var
+	 * @access protected
+	 */
 	protected $_methods = array();
 
-	protected $_abstract   = false;
-	protected $_final      = false;
+	/**
+	 * @var
+	 * @access protected
+	 */
+	protected $_abstract = false;
+
+	/**
+	 * @var
+	 * @access protected
+	 */
+	protected $_final = false;
+
+	/**
+	 * @var
+	 * @access protected
+	 */
 	protected $_superclass = null;
+
+	/**
+	 * @var
+	 * @access protected
+	 */
 	protected $_interfaces = array();
 
+	/**
+	 * @param string $name
+	 * @param string $value
+	 */
 	function addConstant($name, $value) {
 		$this->_constants[$name] = $value;
 	}
 
+	/**
+	 * @param ClassBuilderField $field
+	 */
 	function addField(ClassBuilderField $field) {
 		$this->_fields[$field->getName()] = $field;
 	}
 
+	/**
+	 * @param ClassBuilderMethod $method
+	 */
 	function addMethod(ClassBuilderMethod $method) {
 		$this->_methods[$method->getName()] = $method;
 	}
 
+	/**
+	 * @param string $superclass
+	 */
 	function setSuperClass($superclass) {
 		$this->_superclass = $superclass;
 	}
 
+	/**
+	 * @return string
+	 */
 	function __toString() {
 		$classSpec = $this->getComment();
 
@@ -77,4 +129,5 @@ class ClassBuilder extends ClassBuilderNode {
 
 		return $classSpec . "}\n";
 	}
+
 }
