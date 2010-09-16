@@ -8,6 +8,10 @@ require_once '../src/ClassBuilder.php';
 
 $cl = new ClassBuilder('ClassBuilder');
 
+$cl->addConstant('ACCESS_PUBLIC', 'public');
+$cl->addConstant('ACCESS_PROTECTED', 'protected');
+$cl->addConstant('ACCESS_PRIVATE', 'private');
+
 $f = new ClassBuilderField('$_fields');
 $f->setAccess(ClassBuilder::ACCESS_PROTECTED);
 $f->setDefault('array()');

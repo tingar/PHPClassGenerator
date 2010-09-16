@@ -5,6 +5,7 @@ class ClassBuilder extends ClassBuilderNode {
 	const ACCESS_PROTECTED = 'protected';
 	const ACCESS_PRIVATE   = 'private';
 
+	protected $_constants = array();
 	protected $_fields  = array();
 	protected $_methods = array();
 
@@ -12,6 +13,10 @@ class ClassBuilder extends ClassBuilderNode {
 	protected $_final      = false;
 	protected $_superclass = null;
 	protected $_interfaces = array();
+
+	public function addConstant($name, $value) {
+		$this->_constants[$name] = $value;
+	}
 
 	public function addField(ClassBuilderField $field) {
 		$this->_fields[$field->getName()] = $field;
@@ -38,11 +43,19 @@ class ClassBuilder extends ClassBuilderNode {
 
 		$classSpec .= ($this->_interfaces ? "\n" : " ")."{\n\n";
 
+		foreach($this->_constants as $name => $value) {
+			if (!ctype_digit($value)) {
+				$value = "'{$value}'";
+			}
+			$classSpec .= "const {$name} = {$value};\n";
+		}
+
 		foreach($this->_fields as $field) {
 			foreach(explode("\n", $field->__toString()) as $line) {
 				$classSpec .= "\t{$line}\n";
 			}
 		}
+
 		foreach($this->_methods as $method) {
 			foreach(explode("\n", $method->__toString()) as $line) {
 				$classSpec .= "\t{$line}\n";
