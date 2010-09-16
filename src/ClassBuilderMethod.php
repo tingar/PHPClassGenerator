@@ -94,7 +94,11 @@ class ClassBuilderMethod extends ClassBuilderNode {
 		}
 		$funcspec .= ") {\n";
 		foreach(explode("\n", $this->code) as $line) {
-			$funcspec .= "\t{$line}\n";
+			if ($line) {
+				$funcspec .= "\t{$line}\n";
+			} else {
+				$funcspec .= "\n";
+			}
 		}
 		$funcspec .= "}\n";
 

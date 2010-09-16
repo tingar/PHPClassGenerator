@@ -63,7 +63,11 @@ class ClassBuilder extends ClassBuilderNode {
 
 		foreach($this->_methods as $method) {
 			foreach(explode("\n", $method->__toString()) as $line) {
-				$classSpec .= "\t{$line}\n";
+				if ($line) {
+					$classSpec .= "\t{$line}\n";
+				} else {
+					$classSpec .= "\n";
+				}
 			}
 		}
 
