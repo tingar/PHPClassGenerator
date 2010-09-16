@@ -50,7 +50,7 @@ class ClassBuilderNode {
 			foreach($comment as $line) {
 				$s .= ' *'.($line ? " $line" : '')."\n";
 			}
-			$s .= " * \n";
+			$s .= " *\n";
 		}
 		foreach($this->phpdoc as $doc) {
 			$s .= " * @{$doc['type']}";
