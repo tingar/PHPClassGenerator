@@ -47,8 +47,9 @@ class ClassBuilder extends ClassBuilderNode {
 			if (!ctype_digit($value)) {
 				$value = "'{$value}'";
 			}
-			$classSpec .= "const {$name} = {$value};\n";
+			$classSpec .= "\tconst {$name} = {$value};\n";
 		}
+		if ($this->_constants) $classSpec .= "\n";
 
 		foreach($this->_fields as $field) {
 			foreach(explode("\n", $field->__toString()) as $line) {
