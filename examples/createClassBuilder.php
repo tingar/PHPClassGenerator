@@ -52,10 +52,60 @@ $cl->addMethod($m);
 
 $m = new ClassBuilderMethod('addField');
 $m->addArg('ClassBuilderField', '$field');
+$m->setCode('$this->_fields[$field->getName()] = $field;');
 $cl->addMethod($m);
 
 $m = new ClassBuilderMethod('addMethod');
 $m->addArg('ClassBuilderMethod', '$method');
+$m->setCode('$this->_methods[$method->getName()] = $method;');
+$cl->addMethod($m);
+
+$m = new ClassBuilderMethod('setSuperClass');
+$m->addArg('string', '$superclass');
+$m->setCode('$this->_superclass = $superclass;');
+$cl->addMethod($m);
+
+// the code for the __toString method
+$code = '$classSpec = $this->getComment();
+
+if ($this->_abstract) {
+	$classSpec .= \'abstract \';
+}
+
+$classSpec .= "class {$this->getName()}";
+if ($this->_superclass) {
+	$classSpec .= " extends {$this->_superclass}";
+}
+foreach($this->_interfaces as $interface) {
+	$classSpec .= "\n\timplements $interface";
+}
+
+$classSpec .= ($this->_interfaces ? "\n" : " ")."{\n\n";
+
+foreach($this->_constants as $name => $value) {
+	if (!ctype_digit($value)) {
+		$value = "\'{$value}\'";
+	}
+	$classSpec .= "\tconst {$name} = {$value};\n";
+}
+if ($this->_constants) $classSpec .= "\n";
+
+foreach($this->_fields as $field) {
+	foreach(explode("\n", $field->__toString()) as $line) {
+		$classSpec .= "\t{$line}\n";
+	}
+}
+
+foreach($this->_methods as $method) {
+	foreach(explode("\n", $method->__toString()) as $line) {
+		$classSpec .= "\t{$line}\n";
+	}
+}
+
+return $classSpec . "\n}\n";';
+
+$m = new ClassBuilderMethod('__toString');
+$m->setCode($code);
 $cl->addMethod($m);
 
 echo $cl;
