@@ -50,5 +50,6 @@ $cl->addMethod($m);
 
 $m = new ClassBuilderMethod('addMethod');
 $m->addArg('ClassBuilderMethod', '$method');
+$cl->addMethod($m);
 
 echo $cl;
