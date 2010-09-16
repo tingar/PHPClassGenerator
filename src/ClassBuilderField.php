@@ -12,17 +12,7 @@ class ClassBuilderField extends ClassBuilderNode {
 	 */
 	function setAccess($access) {
 		$this->access = $access;
-
-		$documented = false;
-		foreach($this->phpdoc as $doc) {
-			if ('access'==$doc['type']) {
-				$doc['value'] = $access;
-				$documented = true;
-			}
-		}
-		if (!$documented) {
-			$this->addPHPDoc('access', $access);
-		}
+		$this->setPHPDoc('access', $access);
 	}
 
 	function setStatic() {

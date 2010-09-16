@@ -48,7 +48,7 @@ class ClassBuilderNode {
 		if ($this->comment) {
 			$comment = explode("\n", wordwrap($this->comment, 72));
 			foreach($comment as $line) {
-				$s .= " * $line\n";
+				$s .= ' *'.($line ? " $line" : '')."\n";
 			}
 			$s .= " * \n";
 		}
