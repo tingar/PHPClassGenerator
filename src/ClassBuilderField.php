@@ -13,9 +13,8 @@ class ClassBuilderField extends ClassBuilderNode {
 	function __toString() {
 		$s = $this->getComment();
 
-		if (ClassBuilder::ACCESS_PUBLIC!=$this->access) {
-			$s .= "{$this->access} ";
-		}
+		$s .= "{$this->access} ";
+
 		if ($this->static) {
 			$s .= "{$this->static} ";
 		}

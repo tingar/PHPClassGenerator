@@ -7,6 +7,11 @@ class ClassBuilderMethod extends ClassBuilderNode {
 	protected $type = 'void';
 	protected $args = array();
 
+	/**
+	 * Set the access permissions of this method.
+	 *
+	 * @param string $access
+	 */
 	function setAccess($access) {
 		$this->access = $access;
 
@@ -20,6 +25,13 @@ class ClassBuilderMethod extends ClassBuilderNode {
 		if (!$documented) {
 			$this->addPHPDoc('access', $access);
 		}
+	}
+
+	/**
+	 * Set this method to be a static method.
+	 */
+	function setStatic() {
+		$this->static = true;
 	}
 
 	function addArg($type, $name, $default=null, $optional=null) {
