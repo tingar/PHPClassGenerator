@@ -14,6 +14,11 @@ $cl->addConstant('ACCESS_PUBLIC', 'public');
 $cl->addConstant('ACCESS_PROTECTED', 'protected');
 $cl->addConstant('ACCESS_PRIVATE', 'private');
 
+$f = new ClassBuilderField('$_constants');
+$f->setAccess(ClassBuilder::ACCESS_PROTECTED);
+$f->setDefault('array()');
+$cl->addField($f);
+
 $f = new ClassBuilderField('$_fields');
 $f->setAccess(ClassBuilder::ACCESS_PROTECTED);
 $f->setDefault('array()');
@@ -41,7 +46,7 @@ $cl->addField($f);
 
 $f = new ClassBuilderField('$_interfaces');
 $f->setAccess(ClassBuilder::ACCESS_PROTECTED);
-$f->setDefault('false');
+$f->setDefault('array()');
 $cl->addField($f);
 
 $m = new ClassBuilderMethod('addConstant');
@@ -105,6 +110,7 @@ foreach($this->_methods as $method) {
 return $classSpec . "\n}\n";';
 
 $m = new ClassBuilderMethod('__toString');
+$m->setType('string');
 $m->setCode($code);
 $cl->addMethod($m);
 
