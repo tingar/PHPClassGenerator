@@ -3,7 +3,8 @@
 /**
  * Builds a class, which can be exported as code with the {@link
  * __toString()} function.
- * 
+ *
+ * @package PHPClassBuilder
  */
 class ClassBuilder extends ClassBuilderNode {
 
