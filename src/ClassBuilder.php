@@ -26,6 +26,10 @@ class ClassBuilder extends ClassBuilderNode {
 		$this->_methods[$method->getName()] = $method;
 	}
 
+	public function setSuperClass($superclass) {
+		$this->_superclass = $superclass;
+	}
+
 	public function __toString() {
 		$classSpec = $this->getComment();
 
