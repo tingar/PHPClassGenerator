@@ -97,7 +97,11 @@ if ($this->_constants) $classSpec .= "\n";
 
 foreach($this->_fields as $field) {
 	foreach(explode("\n", $field->__toString()) as $line) {
-		$classSpec .= "\t{$line}\n";
+		if ($line) {
+			$classSpec .= "\t{$line}\n";
+		} else {
+			$classSpec .= "\n";
+		}
 	}
 }
 
