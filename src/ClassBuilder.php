@@ -1,6 +1,7 @@
-<?
-
 /**
+ * Builds a class, which can be exported as code with the {@link
+ * __toString()} function.
+ * 
  */
 class ClassBuilder extends ClassBuilderNode {
 
@@ -70,6 +71,13 @@ class ClassBuilder extends ClassBuilderNode {
 	 */
 	function addMethod(ClassBuilderMethod $method) {
 		$this->_methods[$method->getName()] = $method;
+	}
+
+	/**
+	 * @param string $package
+	 */
+	function setPackage($package) {
+		$this->setPHPDoc('package', $package);
 	}
 
 	/**
