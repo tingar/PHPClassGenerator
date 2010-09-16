@@ -34,6 +34,14 @@ class ClassBuilderMethod extends ClassBuilderNode {
 		$this->static = true;
 	}
 
+	function setType($type) {
+		$this->type = $type;
+	}
+
+	function setCode($code) {
+		$this->code = $code;
+	}
+
 	function addArg($type, $name, $default=null, $optional=null) {
 		if (!array_key_exists($name, $this->args)) {
 			$this->addPHPDoc('param', "$type $name");
@@ -72,7 +80,11 @@ class ClassBuilderMethod extends ClassBuilderNode {
 			}
 			$funcspec .= $name;
 		}
-		$funcspec .= ") {\n{$this->code}\n}\n";
+		$funcspec .= ") {\n";
+		foreach(explode("\n", $this->code) as $line) {
+			$funcspec .= "\t{$line}\n";
+		}
+		$funcspec .= "}\n";
 
 		return $funcspec;
 	}

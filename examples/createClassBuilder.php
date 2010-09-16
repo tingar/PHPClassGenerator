@@ -44,6 +44,12 @@ $f->setAccess(ClassBuilder::ACCESS_PROTECTED);
 $f->setDefault('false');
 $cl->addField($f);
 
+$m = new ClassBuilderMethod('addConstant');
+$m->addArg('string', '$name');
+$m->addArg('string', '$value');
+$m->setCode('$this->_constants[$name] = $value;');
+$cl->addMethod($m);
+
 $m = new ClassBuilderMethod('addField');
 $m->addArg('ClassBuilderField', '$field');
 $cl->addMethod($m);
