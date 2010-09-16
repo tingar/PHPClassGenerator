@@ -17,23 +17,29 @@ class ClassBuilderNode {
 	 * @param string $value
 	 */
 	function addPHPDoc($key, $value) {
-		$phpdoc[] = array('type' => strtolower($key), 'doc' => $value);
+		$this->phpdoc[] = array('type' => strtolower($key), 'doc' => $value);
 	}
 
 	/**
 	 * @return string
 	 */
 	function getComment() {
-		$comment = wordwrap($this->comment, 72);
 		$s = "/**\n";
-		foreach($comment as $line) {
-			$s .= " * $comment\n";
+		if ($this->comment) {
+			$comment = explode("\n", wordwrap($this->comment, 72));
+			foreach($comment as $line) {
+				$s .= " * $line\n";
+			}
+			$s .= " * \n";
 		}
-		$s .= " * \n";
 		foreach($this->phpdoc as $doc) {
-			$s .= " * @{$doc['type']} {$doc['value]'}\n"
+			$s .= " * @{$doc['type']}";
+			if ($doc['doc']) {
+				$s .= " {$doc['doc']}";
+			}
+			$s .= "\n";
 		}
-		$s .= "*/\n";
+		$s .= " */\n";
 		return $s;
 	}
 
@@ -42,6 +48,10 @@ class ClassBuilderNode {
 	 */
 	function setComment($value) {
 		$this->comment = $value;
+	}
+
+	function getName() {
+		return $this->name;
 	}
 
 	function __toString() {
