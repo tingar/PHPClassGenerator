@@ -14,17 +14,7 @@ class ClassBuilderMethod extends ClassBuilderNode {
 	 */
 	function setAccess($access) {
 		$this->access = $access;
-
-		$documented = false;
-		foreach($this->phpdoc as $doc) {
-			if ('access'==$doc['type']) {
-				$doc['value'] = $access;
-				$documented = true;
-			}
-		}
-		if (!$documented) {
-			$this->addPHPDoc('access', $access);
-		}
+		$this->setPHPDoc('access', $access);
 	}
 
 	/**
@@ -34,14 +24,33 @@ class ClassBuilderMethod extends ClassBuilderNode {
 		$this->static = true;
 	}
 
+	/**
+	 * Set the return type of the method.
+	 *
+	 * @param string $type
+	 */
 	function setType($type) {
 		$this->type = $type;
+		$this->setPHPDoc('return', $type);
 	}
 
+	/**
+	 * The code for the function itself.
+	 *
+	 * @param string $code
+	 */
 	function setCode($code) {
 		$this->code = $code;
 	}
 
+	/**
+	 * Add a formal argument to the function.
+	 *
+	 * @param string $type
+	 * @param string $name
+	 * @param mixed $default
+	 * @param boolean $optional
+	 */
 	function addArg($type, $name, $default=null, $optional=null) {
 		if (!array_key_exists($name, $this->args)) {
 			$this->addPHPDoc('param', "$type $name");
@@ -53,6 +62,9 @@ class ClassBuilderMethod extends ClassBuilderNode {
 		);
 	}
 
+	/**
+	 * @return string
+	 */
 	function __toString() {
 		$funcspec = $this->getComment();
 

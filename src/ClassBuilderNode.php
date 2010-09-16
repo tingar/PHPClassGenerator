@@ -21,6 +21,26 @@ class ClassBuilderNode {
 	}
 
 	/**
+	 * Adds or replaces a PHPDoc documentation attribute.
+	 * This is for attributes that only can be set once, like @return.
+	 *
+	 * @param string $key
+	 * @param string $value
+	 */
+	function setPHPDoc($key, $value) {
+		$exists = false;
+		foreach($this->phpdoc as $doc) {
+			if ($key==$doc['type']) {
+				$doc['value'] = $value;
+				$exists = true;
+			}
+		}
+		if (!$exists) {
+			$this->addPHPDoc($key, $value);
+		}
+	}
+
+	/**
 	 * @return string
 	 */
 	function getComment() {
