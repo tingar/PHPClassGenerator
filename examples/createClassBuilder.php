@@ -8,6 +8,8 @@ require_once '../src/ClassBuilder.php';
 
 $cl = new ClassBuilder('ClassBuilder');
 
+$c1->setSuperClass('ClassBuilderNode');
+
 $cl->addConstant('ACCESS_PUBLIC', 'public');
 $cl->addConstant('ACCESS_PROTECTED', 'protected');
 $cl->addConstant('ACCESS_PRIVATE', 'private');
