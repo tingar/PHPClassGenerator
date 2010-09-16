@@ -1,6 +1,12 @@
 <?
 
-class ClassBuilderNode {
+/**
+ * A node to be added to a class.
+ * This class just handles PHPDOC and block comments.
+ *
+ * @package PHPClassBuilder
+ */
+abstract class ClassBuilderNode {
 	protected $comment = '';
 	protected $phpdoc  = array();
 	protected $name = null;

@@ -1,5 +1,10 @@
 <?
 
+/**
+ * Method object, to be assigned to a class.
+ *
+ * @package PHPClassBuilder
+ */
 class ClassBuilderMethod extends ClassBuilderNode {
 	protected $access = ClassBuilder::ACCESS_PUBLIC;
 	protected $static = false;

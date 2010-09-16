@@ -1,5 +1,10 @@
 <?
 
+/**
+ * Field for a class.
+ *
+ * @package PHPClassBuilder
+ */
 class ClassBuilderField extends ClassBuilderNode {
 	protected $access  = ClassBuilder::ACCESS_PUBLIC;
 	protected $static  = false;
