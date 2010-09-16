@@ -8,6 +8,8 @@ require_once '../src/ClassBuilder.php';
 
 $cl = new ClassBuilder('ClassBuilder');
 
+$c1->setComment('Builds a class, which can be exported as code with the {@link __toString()} function.');
+
 $cl->setSuperClass('ClassBuilderNode');
 
 $cl->addConstant('ACCESS_PUBLIC', 'public');
