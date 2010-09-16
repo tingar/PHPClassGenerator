@@ -71,6 +71,6 @@ class ClassBuilder extends ClassBuilderNode {
 			}
 		}
 
-		return $classSpec . "\n}\n";
+		return $classSpec . "}\n";
 	}
 }
