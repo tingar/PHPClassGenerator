@@ -65,6 +65,11 @@ $m->addArg('ClassBuilderMethod', '$method');
 $m->setCode('$this->_methods[$method->getName()] = $method;');
 $cl->addMethod($m);
 
+$m = new ClassBuilderMethod('setPackage');
+$m->addArg('string', '$package');
+$m->setCode('$this->setPHPDoc(\'package\', $package);');
+$cl->addMethod($m);
+
 $m = new ClassBuilderMethod('setSuperClass');
 $m->addArg('string', '$superclass');
 $m->setCode('$this->_superclass = $superclass;');
